@@ -64,7 +64,7 @@ func TestNewJsonBodyParser(t *testing.T) {
 	// Test NewJsonBodyParser() creates a JsonBody instance
 	data := map[string]interface{}{"key": "value"}
 	bodyParser := NewJsonBodyParser(data)
-	_, ok := bodyParser.(JsonBody)
+	_, ok := bodyParser.(*JsonBody)
 	if !ok {
 		t.Error("NewJsonBodyParser() did not return a JsonBody instance")
 	}
@@ -74,7 +74,7 @@ func TestNewFormURLEncodedBodyParser(t *testing.T) {
 	// Test NewFormURLEncodedBodyParser() creates a FormURLEncodedBody instance
 	data := map[string]interface{}{"key": "value"}
 	bodyParser := NewFormURLEncodedBodyParser(data)
-	_, ok := bodyParser.(FormURLEncodedBody)
+	_, ok := bodyParser.(*FormURLEncodedBody)
 	if !ok {
 		t.Error("NewFormURLEncodedBodyParser() did not return a FormURLEncodedBody instance")
 	}
