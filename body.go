@@ -3,9 +3,10 @@ package room
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/google/go-querystring/query"
 	"mime/multipart"
 	"net/url"
+
+	"github.com/google/go-querystring/query"
 )
 
 type IBodyParser interface {
@@ -103,7 +104,9 @@ func NewMultipartFormDataBodyParser(v any) IBodyParser {
 
 		formData = newMap
 	} else {
-		formData, _ = v.(map[string]string)
+		if mapData, ok := v.(map[string]string); ok {
+			formData = mapData
+		}
 	}
 
 	return &MultipartFormDataBody{
